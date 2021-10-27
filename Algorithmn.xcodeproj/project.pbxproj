@@ -6,10 +6,6 @@
 	objectVersion = 55;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		C775972927299FDC001723BB /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775972827299FDC001723BB /* main.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		C775972327299FDC001723BB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -25,6 +21,7 @@
 /* Begin PBXFileReference section */
 		C775972527299FDC001723BB /* Algorithmn */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithmn; sourceTree = BUILT_PRODUCTS_DIR; };
 		C775972827299FDC001723BB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C775972F27299FF0001723BB /* baek2798.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek2798.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +38,8 @@
 		C775971C27299FDC001723BB = {
 			isa = PBXGroup;
 			children = (
-				C775972727299FDC001723BB /* Algorithmn */,
+				C775973127299FF3001723BB /* baekjoon */,
+				C775972727299FDC001723BB /* programmers */,
 				C775972627299FDC001723BB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +52,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C775972727299FDC001723BB /* Algorithmn */ = {
+		C775972727299FDC001723BB /* programmers */ = {
 			isa = PBXGroup;
 			children = (
 				C775972827299FDC001723BB /* main.swift */,
 			);
-			path = Algorithmn;
+			path = programmers;
+			sourceTree = "<group>";
+		};
+		C775973127299FF3001723BB /* baekjoon */ = {
+			isa = PBXGroup;
+			children = (
+				C775972F27299FF0001723BB /* baek2798.swift */,
+			);
+			path = baekjoon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,7 +126,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C775972927299FDC001723BB /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
