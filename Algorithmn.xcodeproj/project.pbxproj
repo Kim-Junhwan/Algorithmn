@@ -26,6 +26,7 @@
 		C77597332729ABEA001723BB /* baek2231.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek2231.swift; sourceTree = "<group>"; };
 		C7759735272A3987001723BB /* baek7568.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek7568.swift; sourceTree = "<group>"; };
 		C7EA96CF272FDAAD00FA7934 /* baek1436.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek1436.swift; sourceTree = "<group>"; };
+		C7EA96D12730D05A00FA7934 /* baek2750.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek2750.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +73,7 @@
 				C7759735272A3987001723BB /* baek7568.swift */,
 				C71BA283272BDE9F008EBC89 /* baek1018.swift */,
 				C7EA96CF272FDAAD00FA7934 /* baek1436.swift */,
+				C7EA96D12730D05A00FA7934 /* baek2750.swift */,
 			);
 			path = baekjoon;
 			sourceTree = "<group>";
