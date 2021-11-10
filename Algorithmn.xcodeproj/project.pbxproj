@@ -6,6 +6,10 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C7191DC4273C204800BCD80F /* baek2108.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7191DC3273C204800BCD80F /* baek2108.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		C775972327299FDC001723BB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C7191DC3273C204800BCD80F /* baek2108.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek2108.swift; sourceTree = "<group>"; };
 		C71BA283272BDE9F008EBC89 /* baek1018.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek1018.swift; sourceTree = "<group>"; };
 		C725E0022732320E00E02093 /* baek10989.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baek10989.swift; sourceTree = "<group>"; };
 		C775972527299FDC001723BB /* Algorithmn */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithmn; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +81,7 @@
 				C7EA96CF272FDAAD00FA7934 /* baek1436.swift */,
 				C7EA96D12730D05A00FA7934 /* baek2750.swift */,
 				C725E0022732320E00E02093 /* baek10989.swift */,
+				C7191DC3273C204800BCD80F /* baek2108.swift */,
 			);
 			path = baekjoon;
 			sourceTree = "<group>";
@@ -139,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7191DC4273C204800BCD80F /* baek2108.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
