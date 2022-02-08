@@ -29,7 +29,6 @@ func dfs(n : Int, m : Int, depth : Int){
             visit[i] = false
         }
     }
-    visit[depth] = true
 }
 
 dfs(n: num[0], m: num[1], depth: 0)
