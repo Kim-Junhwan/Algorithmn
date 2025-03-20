@@ -1,38 +1,28 @@
-var inputNum = Int(readLine()!)!
-var meetingArr: [Meeting] = []
-struct Meeting {
-    let startTime: Int
-    let endTime: Int
+import Foundation
+
+let n = Int(readLine()!)!
+var timeArr: [(Int, Int)] = []
+for _ in 0..<n {
+    let pair = readLine()!.split(separator: " ").map{Int($0)!}
+    timeArr.append((pair[0], pair[1]))
 }
 
-for _ in 0..<inputNum {
-    let meeting = readLine()!.split(separator: " ").map {Int($0)!}
-    meetingArr.append(Meeting(startTime: meeting[0], endTime: meeting[1]))
-}
-
-solution(mettingArr: sortArr(mettingArr: meetingArr))
-
-func solution(mettingArr: [Meeting]) {
-    var currentStartTime = 0
+func solution() {
+    let sortedTimeArr = timeArr.sorted { first, second in
+        if (first.1 == second.1) {
+            return first.0 < second.0
+        }
+        return first.1 < second.1
+    }
     var currentEndTime = 0
     var count = 0
-    for item in mettingArr {
-        if item.startTime >= currentEndTime {
+    for item in sortedTimeArr {
+        if item.0 >= currentEndTime {
             count += 1
-            currentStartTime = item.startTime
-            currentEndTime = item.endTime
+            currentEndTime = item.1
         }
     }
     print(count)
 }
 
-func sortArr(mettingArr: [Meeting]) -> [Meeting] {
-    let sortedMettingArr = mettingArr.sorted { n1, n2 in
-        if n1.endTime == n2.endTime {
-            return n1.startTime < n2.startTime
-        } else {
-            return n1.endTime < n2.endTime
-        }
-    }
-    return sortedMettingArr
-}
+solution()
