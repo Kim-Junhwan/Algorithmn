@@ -1,31 +1,31 @@
 import Foundation
 
-let num = readLine()!.split(separator: " ").map {Int($0)!}
-
-var relationArr: [[Int]] = Array(repeating: Array(repeating: 9999, count: num[0]+1), count: num[0]+1)
-var answerArr: [Int] = []
-for _ in 0..<num[1] {
-    let relation = readLine()!.split(separator: " ").map {Int($0)!}
-    relationArr[relation[0]][relation[1]] = 1
-    relationArr[relation[1]][relation[0]] = 1
+let MAXIMUM = 1000000000
+let nm = readLine()!.split(separator: " ").map{ Int($0)! }
+let n = nm[0]
+let m = nm[1]
+var relation: [[Int]] = Array(repeating: Array(repeating: MAXIMUM, count: n), count: n)
+for i in 0..<n {
+    relation[i][i] = 0
 }
-for item in 1...num[0] {
-    relationArr[item][item] = 0
+for _ in 0..<m {
+    let input = readLine()!.split(separator: " ").map{ Int($0)!-1 }
+    relation[input[0]][input[1]] = 1
+    relation[input[1]][input[0]] = 1
 }
 
-for i in 1...num[0] {
-    for j in 1...num[0] {
-        for k in 1...num[0] {
-            relationArr[j][k] = min(relationArr[j][k], relationArr[j][i]+relationArr[i][k])
+func solution() {
+    for k in 0..<n {
+        for i in 0..<n {
+            for j in 0..<n {
+                if relation[i][j] > relation[i][k]+relation[k][j] {
+                    relation[i][j] = relation[i][k]+relation[k][j]
+                }
+            }
         }
     }
+    let result = relation.map { $0.reduce(0, +) }
+    print(result.enumerated().min(by: { $0.element < $1.element })!.offset+1)
 }
-for item in 1...num[0] {
-    var sum = 0
-    for way in 1...num[0] {
-        sum += relationArr[item][way]
-    }
-    answerArr.append(sum)
-    sum = 0
-}
-print(answerArr.firstIndex(of: answerArr.min()!)!+1)
+
+solution()
