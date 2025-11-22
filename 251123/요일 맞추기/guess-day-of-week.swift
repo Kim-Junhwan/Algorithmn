@@ -12,8 +12,8 @@ let daysArr = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 solution()
 
 func isBeforeDate() -> Bool {
-    if m1 > m2 {
-        return true
+    if m1 < m2 {
+        return false
     }
 
     return d1 > d2
