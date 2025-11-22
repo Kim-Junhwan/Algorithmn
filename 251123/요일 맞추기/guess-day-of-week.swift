@@ -67,10 +67,5 @@ func getdw(elapse: Int) -> String {
 func solution() {
     let elapseDay = getRemainDays()
     let remainDay = elapseDay%7
-    var isBefore: Bool = false
-    if m1 >= m2 && d1 > d2 {
-        isBefore = true
-    }
-
-    print(getdw(elapse: isBefore ? -remainDay : remainDay))
+    print(getdw(elapse: isBeforeDate() ? -remainDay : remainDay))
 }
