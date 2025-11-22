@@ -15,10 +15,9 @@ func getRemainDays() -> Int {
     var currentMonth = m1
     var currentDay = d1
     var isBefore: Bool = false
-    if m1 > m2 || d1 > d2 {
+    if m1 >= m2 && d1 > d2 {
         isBefore = true
     }
-
     var days = 0
 
     while true {
@@ -61,7 +60,7 @@ func solution() {
     let elapseDay = getRemainDays()
     let remainDay = elapseDay%7
     var isBefore: Bool = false
-    if m1 > m2 || d1 > d2 {
+    if m1 >= m2 && d1 > d2 {
         isBefore = true
     }
 
