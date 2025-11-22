@@ -6,6 +6,7 @@ let a = numbers[0]
 let b = numbers[1]
 let c = numbers[2]
 
+solution()
 
 func solution() {
 var minutes = -(11*60+11)
