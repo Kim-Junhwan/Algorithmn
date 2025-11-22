@@ -11,13 +11,17 @@ let daysArr = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 solution()
 
+func isBeforeDate() -> Bool {
+    if m1 > m2 {
+        return true
+    }
+
+    return d1 > d2
+}
+
 func getRemainDays() -> Int {
     var currentMonth = m1
     var currentDay = d1
-    var isBefore: Bool = false
-    if m1 >= m2 && d1 > d2 {
-        isBefore = true
-    }
     var days = 0
 
     while true {
@@ -26,7 +30,7 @@ func getRemainDays() -> Int {
         }
         var nextMonth: Int = currentMonth
         var nextDays: Int = currentDay
-        if isBefore {
+        if isBeforeDate() {
             nextDays = currentDay - 1
             if nextDays <= 0 {
                 nextMonth -= 1
