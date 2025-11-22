@@ -22,5 +22,5 @@ while true {
     minutes += 24 * 60
 }
 
-print(minutes > 0 ? minutes : -1)
+print(minutes >= 0 ? minutes : -1)
 }
