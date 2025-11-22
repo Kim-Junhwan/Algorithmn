@@ -12,11 +12,15 @@ let daysArr = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 solution()
 
 func isBeforeDate() -> Bool {
-    if m1 < m2 {
-        return false
+    if m1 != m2 {
+        return m1 < m2 ? false : true
     }
 
-    return d1 > d2
+    if d1 != d2 {
+        return d1 < d2 ? false : true
+    }
+
+    return true
 }
 
 func getRemainDays() -> Int {
