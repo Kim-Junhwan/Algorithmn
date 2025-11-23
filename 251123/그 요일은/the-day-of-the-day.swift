@@ -54,10 +54,10 @@ func getAnswer() {
         var count = 0
 
         for i in 0..<getRemainDay() {
+            currentDay = (currentDay+1)%7
             if wdays[currentDay] == a {
                 count += 1
             }
-            currentDay = (currentDay+1)%7
         }
         print(count)
         return
