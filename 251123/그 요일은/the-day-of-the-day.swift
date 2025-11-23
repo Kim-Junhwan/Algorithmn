@@ -57,7 +57,7 @@ func getAnswer() {
             if wdays[currentDay] == a {
                 count += 1
             }
-            currentDay = (currentDay+1)%6
+            currentDay = (currentDay+1)%7
         }
         print(count)
         return
@@ -74,6 +74,5 @@ func getAnswer() {
         print(count)
     }
 }
-
 getAnswer()
 
