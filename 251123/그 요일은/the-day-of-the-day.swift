@@ -9,7 +9,7 @@ let d2 = Int(tokens[3])!
 let a = readLine()!
 
 let days = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-let wdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "sun"]
+let wdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 func isBeforeDate() -> Bool {
     if m1 != m2 {
@@ -74,5 +74,6 @@ func getAnswer() {
         print(count)
     }
 }
+
 getAnswer()
 
