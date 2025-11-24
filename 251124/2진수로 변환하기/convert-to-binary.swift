@@ -10,4 +10,4 @@ while remainNum != 0 {
     remainNum /= 2
 }
 
-print(String(answer.reversed()))
+print(answer.isEmpty ? "0" : String(answer.reversed()))
