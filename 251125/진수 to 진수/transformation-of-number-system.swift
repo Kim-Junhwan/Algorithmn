@@ -16,6 +16,7 @@ func convertTen(_ str: [String], _ n: Int) -> Int {
     var sum = 0
 
     for i in 0..<str.count {
+        if str[i] == "0" { continue }
         sum += pow(n, str.count-1-i)
     }
     return sum
@@ -32,5 +33,6 @@ func convertN(_ num: Int, _ n: Int) -> String {
 
     return String(answer.reversed())
 }
+
 
 print(convertN(convertTen(n, a), b))
