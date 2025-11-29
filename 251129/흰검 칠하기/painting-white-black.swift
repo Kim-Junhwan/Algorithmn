@@ -20,11 +20,10 @@ struct Tile {
     var currentColor: TileColor?
     var whiteCount: Int
     var blackCount: Int
-    var isGray: Bool
 }
 
-var arr: [Tile] = Array(repeating: Tile(currentColor: nil, whiteCount: 0, blackCount: 0, isGray: false) ,count: 200001)
-var current = 1000
+var arr: [Tile] = Array(repeating: Tile(currentColor: nil, whiteCount: 0, blackCount: 0) ,count: 200001)
+var current = 100000
 for command in commands {
     let direction = command.1
     let distance = command.0
@@ -44,9 +43,8 @@ for command in commands {
         if arr[i].blackCount >= 2 && arr[i].whiteCount >= 2 {
             arr[i].currentColor = .gray
         }
-
-        current = direction == "L" ? start : end
     }
+    current = direction == "L" ? start : end
 }
 
 let whiteTileCount = arr.filter { $0.currentColor == .white }.count
