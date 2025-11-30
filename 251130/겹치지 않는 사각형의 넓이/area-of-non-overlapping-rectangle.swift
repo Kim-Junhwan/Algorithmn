@@ -8,8 +8,8 @@ let aX1 = rectAInput[0], aY1 = rectAInput[1], aX2 = rectAInput[2], aY2 = rectAIn
 let bX1 = rectBInput[0], bY1 = rectBInput[1], bX2 = rectBInput[2], bY2 = rectBInput[3]
 let mX1 = rectMInput[0], mY1 = rectMInput[1], mX2 = rectMInput[2], mY2 = rectMInput[3]
 
-let minX = min(aX1, bX1)
-let minY = min(aY1, bY1)
+let minX = min(min(aX1, bX1), mX1)
+let minY = min(min(aY1, bY1), mY1)
 
 var map: [[Bool]] = Array(repeating: Array(repeating: false, count: 2000), count: 2000)
 
