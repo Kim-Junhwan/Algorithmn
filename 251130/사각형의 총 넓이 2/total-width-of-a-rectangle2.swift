@@ -20,8 +20,8 @@ for _ in 0..<n {
 }
 
 for i in 0..<n {
-    for y in (minY + y1[i]) ..< (minY + y2[i]) {
-        for x in (minX + x1[i]) ..< (minX + x2[i]) {
+    for y in abs(minY - y1[i]) ..< abs(minY - y2[i]) {
+        for x in abs(minX - x1[i]) ..< abs(minX - x2[i]) {
             map[y][x] = true
         }
     }
