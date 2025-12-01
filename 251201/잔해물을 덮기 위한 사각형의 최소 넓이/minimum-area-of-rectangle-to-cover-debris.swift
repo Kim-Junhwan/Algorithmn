@@ -16,7 +16,6 @@ let offsetX = min(rect1X1, rect2X1)
 let offsetY = min(rect1Y1, rect2Y1)
 
 var map: [[Bool]] = Array(repeating: Array(repeating: false, count: 2000), count: 2000)
-
 for i in (rect1Y1-offsetY)..<(rect1Y2-offsetY) {
     for j in (rect1X1-offsetX)..<(rect1X2-offsetX) {
         map[i][j] = true
@@ -44,5 +43,8 @@ for i in (rect1Y1-offsetY)..<(rect1Y2-offsetY) {
         }
     }
 }
-
-print((maxX-minX+1) * (maxY-minY+1))
+if map.flatMap{$0}.filter{$0}.count > 0 {
+    print((maxX-minX+1) * (maxY-minY+1))
+} else {
+    print("0")
+}
