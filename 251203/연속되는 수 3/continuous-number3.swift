@@ -17,4 +17,4 @@ for i in 1..<n {
     }
     maxNum = max(maxNum, num)
 }
-print(maxNum)
+print(maxNum != 1 ? maxNum : 0)
