@@ -6,7 +6,7 @@ for _ in 0..<n {
     numbers.append(Int(readLine()!)!)
 }
 
-var maxNum = 0
+var maxNum = 1
 var num = 1
 
 for i in 1..<n {
@@ -17,4 +17,4 @@ for i in 1..<n {
     }
     maxNum = max(maxNum, num)
 }
-print(maxNum != 1 ? maxNum : 0)
+print(maxNum)
