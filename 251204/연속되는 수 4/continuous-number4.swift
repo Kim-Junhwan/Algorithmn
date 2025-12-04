@@ -17,4 +17,4 @@ for i in 1..<n {
     maxCount = max(maxCount, count)
 }
 
-print(maxCount == )
+print(maxCount)
