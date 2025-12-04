@@ -6,7 +6,7 @@ for _ in 0..<n {
     numbers.append(Int(readLine()!)!)
 }
 
-var maxCount = 0
+var maxCount = 1
 var count = 1
 for i in 1..<n {
     if numbers[i] > numbers[i-1] {
@@ -17,4 +17,4 @@ for i in 1..<n {
     maxCount = max(maxCount, count)
 }
 
-print(maxCount)
+print(maxCount == )
