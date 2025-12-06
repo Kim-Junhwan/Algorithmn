@@ -13,11 +13,16 @@ for _ in 0..<m {
 
 var students: [Int] = Array(repeating: 0, count: n)
 
+func solution() {
 for i in penalizedPerson {
     students[i-1] += 1
 
     if students[i-1] >= k {
         print(i)
-        break
+        return
     } 
 }
+print(-1)
+}
+
+solution()
