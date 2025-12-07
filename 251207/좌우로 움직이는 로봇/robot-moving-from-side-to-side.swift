@@ -49,13 +49,16 @@ func solution() {
 
     for i in 1..<max {
         let checkAIndex = min(i, aMove.count-1)
+        let aNotMove = i > aMove.count-1
         let checkBIndex = min(i, bMove.count-1)
+        let bNotMove = i > bMove.count-1
 
         if aMove[checkAIndex] == bMove[checkBIndex] {
-            if aMove[checkAIndex-1] == bMove[checkBIndex-1] {
+            if aMove[aNotMove ? checkAIndex : checkAIndex-1] == bMove[bNotMove ? checkBIndex : checkBIndex-1] {
                 continue
+            } else {
+                answer += 1
             }
-            answer += 1
         }
     }
 
