@@ -40,10 +40,12 @@ func solution() {
 
     for i in 1..<aArr.count {
         if aArr[i] == bArr[i] { 
-            answer += 1
-            firstMan = "AB"
+            if firstMan != "AB" {
+                answer += 1
+                firstMan = "AB"
+            }
             continue
-             }
+            }
         let currentFirst = aArr[i] > bArr[i] ? "A" :"B"
 
         if firstMan != currentFirst {
