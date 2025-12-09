@@ -54,7 +54,7 @@ func solution() {
         }
     }
 
-    print(answer-1)
+    print(answer)
 }
 
 solution()
