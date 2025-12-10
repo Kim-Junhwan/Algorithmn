@@ -6,7 +6,7 @@ var coordi = (0,0)
 var direction = 0
 
 let dx = [0,1,0,-1]
-let dy = [-1,0,1,0]
+let dy = [1,0,-1,0]
 
 for command in commands {
     if command == "L" {
