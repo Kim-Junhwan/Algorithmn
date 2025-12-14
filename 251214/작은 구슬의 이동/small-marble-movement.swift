@@ -30,7 +30,7 @@ for _ in 0..<t {
     let nextX = currentLocation.1 + dx[currentDirection]
     let nextY = currentLocation.0 + dy[currentDirection]
 
-    if nextX < 0 || nextY >= n || nextY < 0 || nextY >= n {
+    if nextX < 0 || nextX >= n || nextY < 0 || nextY >= n {
         currentDirection = (currentDirection + 2)%4
         answer += 1
         continue
