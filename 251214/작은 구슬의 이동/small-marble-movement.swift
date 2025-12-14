@@ -13,9 +13,9 @@ var currentLocation = (r-1, c-1)
 var currentDirection = 0
 
 if d == "U" {
-    currentDirection = 1
-} else if d == "D" {
     currentDirection = 3
+} else if d == "D" {
+    currentDirection = 1
 } else if d == "R" {
     currentDirection = 0
 } else {
@@ -24,7 +24,6 @@ if d == "U" {
 
 let dx = [1,0,-1,0]
 let dy = [0,1,0,-1]
-var answer = 0
 
 for _ in 0..<t {
     let nextX = currentLocation.1 + dx[currentDirection]
@@ -32,12 +31,10 @@ for _ in 0..<t {
 
     if nextX < 0 || nextX >= n || nextY < 0 || nextY >= n {
         currentDirection = (currentDirection + 2)%4
-        answer += 1
         continue
     }
 
     currentLocation = (nextY, nextX)
-    answer += 1
 }
 
 print("\(currentLocation.0+1) \(currentLocation.1+1)")
