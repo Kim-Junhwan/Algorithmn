@@ -30,8 +30,10 @@ func solution() {
     while !queue.isEmpty {
         let pop = queue.removeLast()
         
-        if pop.x == n-1 && pop.y == n-1 && pop.count == 3 {
-            answer += 1
+        if pop.x == n-1 && pop.y == m-1 {
+            if pop.count == 3 {
+                answer += 1
+            }
             continue
         } 
 
@@ -39,8 +41,15 @@ func solution() {
             continue
         }
 
-        for nextY in pop.y+1..<n {
-            for nextX in pop.x+1..<n {
+        let startY = pop.y+1
+        let startX = pop.x+1
+
+        if startX >= n || startY >= m {
+            continue
+        }
+
+        for nextY in startY..<m {
+            for nextX in startX..<n {
                 if grid[pop.y][pop.x] == grid[nextY][nextX] {
                     continue
                 }
