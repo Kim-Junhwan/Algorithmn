@@ -21,15 +21,21 @@ func twoToTen(_ two: [Character]) -> Int {
 }
 
 func solution() {
+    var answer = Int.min
 for i in 0..<binary.count {
     if binary[i] == "0" {
         var cpBn = binary
         cpBn[i] = "1"
-        print(twoToTen(cpBn))
-        return
-    }
+        answer = max(twoToTen(cpBn), answer)
+    } 
+
+    if binary[i] == "1" {
+        var cpBn = binary
+        cpBn[i] = "0"
+        max(twoToTen(cpBn), answer)
+    } 
 }
- print(twoToTen(binary))
+print(answer)
 }
 
 
