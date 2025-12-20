@@ -32,7 +32,7 @@ for i in 0..<binary.count {
     if binary[i] == "1" {
         var cpBn = binary
         cpBn[i] = "0"
-        max(twoToTen(cpBn), answer)
+        answer = max(twoToTen(cpBn), answer)
     } 
 }
 print(answer)
