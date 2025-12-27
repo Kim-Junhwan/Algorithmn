@@ -58,4 +58,4 @@ for i in 0..<numbers.count-2 {
     }
 }
 
-print(answer)
+print(answer == Int.min ? -1 : answer)
