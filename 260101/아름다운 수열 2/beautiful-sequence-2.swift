@@ -34,6 +34,8 @@ func getSoon() -> [[Int]] {
 
 if n < m {
     print(0)
+} else if n == m {
+    print(a == b ? 1 : 0)
 } else {
 let mSoon = getSoon()
 var answer = 0
