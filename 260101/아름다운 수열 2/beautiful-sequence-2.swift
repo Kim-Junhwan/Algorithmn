@@ -19,6 +19,9 @@ for i in b {
 
 var answer = 0
 
+if n < m {
+    print(0)
+} else {
 for i in 0..<n-m+1 {
     var aDict: [Int: Int] = [:]
     for j in Array(a[i..<i+m]) {
@@ -35,3 +38,5 @@ for i in 0..<n-m+1 {
 }
 
 print(answer)
+}
+
