@@ -32,6 +32,9 @@ func getSoon() -> [[Int]] {
     return Array(setArr)
 }
 
+if n < m {
+    print(0)
+} else {
 let mSoon = getSoon()
 var answer = 0
 for i in 0..<n-m+1 {
@@ -41,3 +44,4 @@ for i in 0..<n-m+1 {
 }
 
 print(answer)
+}
