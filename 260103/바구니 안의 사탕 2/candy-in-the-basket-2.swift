@@ -12,7 +12,7 @@ for _ in 0..<n {
     baskets.append((candy, coordinate))
 }
 
-var arr: [Int] = Array(repeating: 0, count: 101)
+var arr: [Int] = Array(repeating: 0, count: 401)
 
 for basket in baskets {
     arr[basket.coordinate] += basket.candy
@@ -21,7 +21,7 @@ for basket in baskets {
 var answer = 0
 var currentCandy = 0
 var isInit = false
-for i in k..<101-k{
+for i in k..<401-k{
     if !isInit {
         currentCandy = Array(arr[i-k...i+k]).reduce(0) { $0 + $1 }
         isInit = true
