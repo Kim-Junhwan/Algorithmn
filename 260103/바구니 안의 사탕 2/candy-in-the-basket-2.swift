@@ -23,7 +23,7 @@ var currentCandy = 0
 var isInit = false
 for i in k..<101-k{
     if !isInit {
-        currentCandy = Array(arr[i-k..<i+k]).reduce(0) { $0 + $1 }
+        currentCandy = Array(arr[i-k...i+k]).reduce(0) { $0 + $1 }
         isInit = true
     } else {
         currentCandy = currentCandy + (arr[i+k] - arr[i-k-1])
