@@ -48,7 +48,6 @@ func checkIsValid(_ num: Int) -> Bool {
             return false
         }
     }
-    print(num)
     return true
 }
 var answer = 0
