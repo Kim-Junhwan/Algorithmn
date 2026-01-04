@@ -14,7 +14,8 @@ for _ in 0..<n {
 
 func checknotSameNum(_ x: Int) -> Bool {
     let arr = Set(Array(String(x)))
-    return arr.count == 3
+
+    return arr.count == 3 && !arr.contains("0")
 }
 
 func checkIsValid(_ num: Int) -> Bool {
