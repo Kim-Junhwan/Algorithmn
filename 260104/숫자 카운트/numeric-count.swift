@@ -18,7 +18,7 @@ func checknotSameNum(_ x: Int) -> Bool {
 }
 
 func checkIsValid(_ num: Int) -> Bool {
-    for index in 0..<4 {
+    for index in 0..<n {
         let compareNum = a[index]
         var cArr = Array(String(compareNum))
         var numArr = Array(String(num))
