@@ -28,13 +28,13 @@ func groupIntoPairs(_ array: [Int]) -> [[[Int]]] {
         }
     }
     
-    return result
+    return Array(Set(result))
 }
 
 let combiArr = groupIntoPairs(skills)
 let reduceArr = combiArr.map { $0.map { $0.reduce(0) {$0 + $1} } }
 
-if combiArr.count == 0 {
+if combiArr.count == 1 {
     print(-1)
 } else {
     var answer = Int.max
