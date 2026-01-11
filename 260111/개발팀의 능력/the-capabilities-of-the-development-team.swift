@@ -68,7 +68,6 @@ func isValidPairing(_ pairing: [[Int]]) -> Bool {
 }
 
 let combiArr = generateAllPairings(skills)
-print(combiArr)
 let reduceArr = combiArr.map { $0.map { $0.reduce(0) {$0 + $1} } }
 
 if combiArr.count == 1 {
