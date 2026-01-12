@@ -20,7 +20,7 @@ for ignoreCoordi in 0..<points.count {
         maxX = max(maxX, points[i].x)
         maxY = max(maxY, points[i].y)
         minX = min(minX, points[i].x)
-        minY = min(minX, points[i].y)
+        minY = min(minY, points[i].y)
     }
     answer = min(answer, (maxX - minX) * (maxY - minY))
 }
