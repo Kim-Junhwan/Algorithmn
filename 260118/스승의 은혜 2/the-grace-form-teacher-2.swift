@@ -17,7 +17,7 @@ for i in 0..<prices.count {
 var answer = 0
 for i in 0..<prices.count {
     let salePrice = prices[i]/2
-    answer = max(answer, priceSum.firstIndex { $0 > b+salePrice }!)
+    answer = max(answer, priceSum.firstIndex { $0 > b+salePrice } ?? n)
 }
 
 print(answer)
