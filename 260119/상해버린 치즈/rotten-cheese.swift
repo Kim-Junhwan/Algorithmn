@@ -51,18 +51,17 @@ for cheese in 0..<m {
     }
 }
 
-for canDropCheese in dropCheese.indices.filter { dropCheese[$0] } {
+for canDropCheese in dropCheese.indices.filter({ dropCheese[$0] }) {
      // 해당 치즈를 먹은 사람 목록
-        let cheeseEatPeople = info1.indices.filter { !info1[$0][canDropCheese].isEmpty }
-    if !info2.contains(where: { p1 in
-        p1.p == canDropCheese
-    }) {
-        dropCheese[canDropCheese] = false
+    for sickPerson in info2.map({$0.p}) {
+        if info1[sickPerson][canDropCheese].isEmpty {
+            dropCheese[canDropCheese] = false
+        }
     }
 }
 var answerPeople: [Int] = []
-for i in dropCheese.indices.filter { dropCheese[$0] } {
-    let cheeseEatPeople = info1.indices.filter { !info1[$0][i].isEmpty }.flatMap{$0}
+for i in dropCheese.indices.filter({ dropCheese[$0] }) {
+    let cheeseEatPeople = info1.indices.filter { !info1[$0][i].isEmpty }.compactMap{$0}
     answerPeople.append(contentsOf: cheeseEatPeople)
 }
 let set = Set(answerPeople)
