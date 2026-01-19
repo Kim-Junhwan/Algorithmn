@@ -42,13 +42,22 @@ func checkIsEatCheese(_ p: Int, _ t: Int, _ cheese: Int) -> Bool {
 for cheese in 0..<m {
     
     for sickInfo in info2 {
-        
         // 아픈 경우 아픈 시간 이전에 치즈 먹었는지 체크
         if checkIsEatCheese(sickInfo.p, sickInfo.t, cheese) {
             dropCheese[cheese] = true
         } else {
             dropCheese[cheese] = false
         }
+    }
+}
+
+for canDropCheese in dropCheese.indices.filter { dropCheese[$0] } {
+     // 해당 치즈를 먹은 사람 목록
+        let cheeseEatPeople = info1.indices.filter { !info1[$0][canDropCheese].isEmpty }
+    if !info2.contains(where: { p1 in
+        p1.p == canDropCheese
+    }) {
+        dropCheese[canDropCheese] = false
     }
 }
 var answerPeople: [Int] = []
