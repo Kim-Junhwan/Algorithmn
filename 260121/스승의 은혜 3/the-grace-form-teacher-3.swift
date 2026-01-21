@@ -17,7 +17,7 @@ studentInfos = studentInfos.sorted {
     if leftSum == rightSum {
         return $0.1 < $1.1
     } else {
-        return leftSum < rightSum
+        return (($0.0/2)+$0.1) < (($1.0/2)+$1.1)
     }
 }
 var priceSum: [Int] = []
