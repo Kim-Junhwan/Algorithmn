@@ -23,7 +23,7 @@ for i in 0..<studentInfos.count {
     let salePrice = studentInfos[i].0/2
     let quickCost = studentInfos[i].1
     answer = max(answer, priceSum.indices.firstIndex { idx in
-        let threshold = (idx >= i) ? (b + salePrice + quickCost) : b + quickCost
+        let threshold = (idx >= i) ? (b + salePrice) : b
             return priceSum[idx] > threshold
     } ?? n)
 }
