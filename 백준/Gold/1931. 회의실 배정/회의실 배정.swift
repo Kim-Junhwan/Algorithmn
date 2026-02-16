@@ -1,28 +1,31 @@
 import Foundation
 
 let n = Int(readLine()!)!
-var timeArr: [(Int, Int)] = []
-for _ in 0..<n {
-    let pair = readLine()!.split(separator: " ").map{Int($0)!}
-    timeArr.append((pair[0], pair[1]))
+var meetingArr: [(Int, Int)] = Array(repeating: (0,0), count: n)
+for i in 0..<n {
+    let meeting = readLine()!.split(separator: " ").map{Int($0)!}
+    meetingArr[i] = (meeting[0], meeting[1])
 }
 
-func solution() {
-    let sortedTimeArr = timeArr.sorted { first, second in
-        if (first.1 == second.1) {
-            return first.0 < second.0
-        }
-        return first.1 < second.1
+let sortedMeetingArr = meetingArr.sorted { value1, value2 in
+    if value1.1 == value2.1 {
+        return value1.0 < value2.0
     }
-    var currentEndTime = 0
-    var count = 0
-    for item in sortedTimeArr {
-        if item.0 >= currentEndTime {
-            count += 1
-            currentEndTime = item.1
-        }
-    }
-    print(count)
+    return value1.1 < value2.1
 }
 
-solution()
+var currentEndTime = 0
+var answer = 0
+
+for i in 0..<n {
+    let insertMeeting = sortedMeetingArr[i]
+    let startTime = insertMeeting.0
+    let endTime = insertMeeting.1
+    
+    if currentEndTime <= startTime {
+        answer += 1
+        currentEndTime = endTime
+    }
+}
+
+print(answer)
