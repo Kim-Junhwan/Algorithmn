@@ -1,66 +1,60 @@
-//
-//  main.swift
-//  Algorithmn
-//
-//  Created by JunHwan Kim on 2/22/25.
-//
-
 import Foundation
 
-let nmv = readLine()!.split(separator: " ").map{Int($0)!}
+let nmv = readLine()!.split(separator: " ").map { Int($0)! }
 let n = nmv[0]
 let m = nmv[1]
 let v = nmv[2]
 
-var relation: [[Int]] = Array(repeating: [], count: n)
+var nodeList: [[Int]] = Array(repeating: [], count: n+1)
 
 for _ in 0..<m {
-    let input = readLine()!.split(separator: " ").map{Int($0)!}
-    relation[input[0]-1].append(input[1]-1)
-    relation[input[1]-1].append(input[0]-1)
+    let input = readLine()!.split(separator: " ").map { Int($0)! }
+    let start = input[0]
+    let end = input[1]
+    nodeList[start].append(end)
+    nodeList[end].append(start)
 }
 
-relation = relation.map { $0.sorted() }
 
-func solution() {
-    var dfsAnswer = ""
-    var dfsVisited: [Bool] = Array(repeating: false, count: n)
-    func dfs(num: Int) {
-        dfsAnswer.append("\(num+1) ")
-        for i in relation[num] {
-            if !dfsVisited[i] {
-                dfsVisited[i] = true
-                dfs(num: i)
+
+func solution(n: Int, m: Int, v: Int, list: [[Int]]) {
+    func dfs() {
+        var answer = ""
+        var visited = Array(repeating: false, count: n+1)
+        var stack: [Int] = [v]
+        
+        while !stack.isEmpty {
+            let pop = stack.removeLast()
+            if visited[pop] {
+                continue
             }
+            visited[pop] = true
+            answer += "\(pop) "
+            let nextNodes = list[pop].filter { !visited[$0] }.sorted { $0 > $1 }
+            stack.append(contentsOf: nextNodes)
         }
+        print(answer)
     }
     
-    dfsVisited[v-1] = true
-    dfs(num: v-1)
-    
-    var bfsAnswer = ""
-    var bfsVisited: [Bool] = Array(repeating: false, count: n)
-    func bfs(num: Int) {
-        var queue: [Int] = []
-        queue.append(num)
+    func bfs() {
+        var answer = ""
+        var visited = Array(repeating: false, count: n+1)
+        var queue: [Int] = [v]
         
         while !queue.isEmpty {
             let pop = queue.removeFirst()
-            bfsAnswer.append("\(pop+1) ")
-            for i in relation[pop] {
-                if !bfsVisited[i] {
-                    bfsVisited[i] = true
-                    queue.append(i)
-                }
+            if visited[pop] {
+                continue
             }
+            visited[pop] = true
+            answer += "\(pop) "
+            let nextNodes = list[pop].filter { !visited[$0] }.sorted { $0 < $1 }
+            queue.append(contentsOf: nextNodes)
         }
+        print(answer)
     }
-    
-    bfsVisited[v-1] = true
-    bfs(num: v-1)
-    
-    print(dfsAnswer)
-    print(bfsAnswer)
+    dfs()
+    bfs()
 }
 
-solution()
+solution(n: n, m: m, v: v, list: nodeList)
