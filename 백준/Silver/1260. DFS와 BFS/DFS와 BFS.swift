@@ -29,7 +29,7 @@ func solution(n: Int, m: Int, v: Int, list: [[Int]]) {
                 continue
             }
             visited[pop] = true
-            answer += "\(pop) "
+            answer.append("\(pop) ")
             let nextNodes = list[pop].filter { !visited[$0] }.sorted { $0 > $1 }
             stack.append(contentsOf: nextNodes)
         }
@@ -40,16 +40,20 @@ func solution(n: Int, m: Int, v: Int, list: [[Int]]) {
         var answer = ""
         var visited = Array(repeating: false, count: n+1)
         var queue: [Int] = [v]
+        var startIdx = 0
+        var endIdx = 0
         
-        while !queue.isEmpty {
-            let pop = queue.removeFirst()
+        while startIdx <= endIdx {
+            let pop = queue[startIdx]
+            startIdx += 1
             if visited[pop] {
                 continue
             }
             visited[pop] = true
-            answer += "\(pop) "
+            answer.append("\(pop) ")
             let nextNodes = list[pop].filter { !visited[$0] }.sorted { $0 < $1 }
             queue.append(contentsOf: nextNodes)
+            endIdx += nextNodes.count
         }
         print(answer)
     }
