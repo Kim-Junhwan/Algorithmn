@@ -14,9 +14,11 @@ let dy = [0,1,0,-1]
 
 func solution(){
     var queue: [(Int, Int, Int)] = [(0,0,1)]
-    
-    while !queue.isEmpty {
-        let pop = queue.removeFirst()
+    var startIdx = 0
+    var endIdx = 0
+    while startIdx <= endIdx {
+        let pop = queue[startIdx]
+        startIdx += 1
         if pop.0 == nm[1]-1 && pop.1 == nm[0]-1 {
             print(pop.2)
             return
@@ -29,6 +31,7 @@ func solution(){
             }
             visited[nextY][nextX] = true
             queue.append((nextX, nextY, pop.2+1))
+            endIdx += 1
         }
     }
 }
