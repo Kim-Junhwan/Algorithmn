@@ -1,29 +1,33 @@
 import Foundation
 
 let nm = readLine()!.split(separator: " ").map { Int($0)! }
-var mapArr: [[Bool]] = Array(repeating: Array(repeating: false, count: nm[0]), count: nm[0])
-var visited: [Bool] = Array(repeating: false, count: nm[0])
+var relation: [[Int]] = Array(repeating: [], count: nm[0]+1)
 for _ in 0..<nm[1] {
     let input = readLine()!.split(separator: " ").map { Int($0)! }
-    mapArr[input[0]-1][input[1]-1] = true
-    mapArr[input[1]-1][input[0]-1] = true
+    relation[input[0]].append(input[1])
+    relation[input[1]].append(input[0])
 }
 
-func solution() -> Int {
-    var answer = 0
-    var stack: [Int] = []
-    while visited.contains(false) {
-        let firstIndex = visited.firstIndex(of: false)!
-        stack.append(firstIndex)
-        answer += 1
+var count = 0
+var visited: [Bool] = Array(repeating: false, count: nm[0]+1)
+var stack: [Int] = []
+
+for i in 1...nm[0] {
+    if !visited[i] {
+        count += 1
+        stack.append(i)
         while !stack.isEmpty {
-            let popValue = stack.removeLast()
-            visited[popValue] = true
-            let nextNodeList = mapArr[popValue].enumerated().filter{ $0.element }.filter{ visited[$0.offset] == false }.map { $0.offset }
-            stack.append(contentsOf: nextNodeList)
+            let node = stack.removeLast()
+            if !visited[node] {
+                visited[node] = true
+                for next in relation[node] {
+                    if !visited[next] {
+                        stack.append(next)
+                    }
+                }
+            }
         }
     }
-    return answer
 }
 
-print(solution())
+print(count)
