@@ -18,12 +18,10 @@ for i in 1...nm[0] {
         stack.append(i)
         while !stack.isEmpty {
             let node = stack.removeLast()
-            if !visited[node] {
-                visited[node] = true
-                for next in relation[node] {
-                    if !visited[next] {
-                        stack.append(next)
-                    }
+            for next in relation[node] {
+                if !visited[next] {
+                    visited[next] = true
+                    stack.append(next)
                 }
             }
         }
