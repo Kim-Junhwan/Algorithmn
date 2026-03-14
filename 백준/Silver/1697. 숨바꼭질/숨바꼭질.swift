@@ -47,13 +47,13 @@ func solution() {
         
         for i in [forward, back, teleport] {
             
+            if i < 0 || i > 200_000 {
+                continue
+            }
+            
             if i == nk[1] {
                 print(pop.count + 1)
                 return
-            }
-            
-            if i < 0 || i > 200_000 {
-                continue
             }
             
             if visited[i] {
