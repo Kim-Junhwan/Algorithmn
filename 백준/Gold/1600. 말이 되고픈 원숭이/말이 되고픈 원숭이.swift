@@ -1,65 +1,114 @@
 import Foundation
 
-let k = Int(readLine()!)!
-let wh = readLine()!.split(separator: " ").map{ Int($0)! }
-var map: [[Bool]] = []
-var visited: [[[Bool]]] = Array(repeating: Array(repeating: Array(repeating: false, count: wh[0]), count: wh[1]), count: 31)
-for _ in 0..<wh[1] {
-    let input = readLine()!.split(separator: " ").map{ Int($0)==0 }
-    map.append(input)
-}
+import Foundation
 
-let mx = [0,1,0,-1]
-let my = [-1,0,1,0]
-
-let hx = [1,2,2,1,-1,-2,-2,-1]
-let hy = [-2,-1,1,2,-2,-1,1,2]
-
-struct Monkey {
-    let count: Int
-    let canJumpCount: Int
-    let x: Int
-    let y: Int
-}
-
-func validateCoordi(x: Int, y: Int, jumpCount: Int) -> Bool {
-    if x < 0 || x >= wh[0] || y < 0 || y >= wh[1] {
-        return false
+struct Queue<T> {
+    private var startIdx = 0
+    private var lastIdx = -1
+    
+    private var arr: [T] = []
+    
+    init(arr: [T]) {
+        arr.forEach { append($0) }
     }
-    return !visited[jumpCount][y][x] && map[y][x]
+    
+    var isEmpty: Bool {
+        return startIdx > lastIdx
+    }
+    
+    mutating func append(_ input: T) {
+        arr.append(input)
+        lastIdx += 1
+    }
+    
+    mutating func pop() -> T {
+        let pop = arr[startIdx]
+        startIdx += 1
+        return pop
+    }
 }
+
+let k = Int(readLine()!)!
+let wh = readLine()!.split(separator: " ").map{Int($0)!}
+var map: [[Bool]] = []
+for _ in 0..<wh[1] {
+    map.append(readLine()!.split(separator: " ").map{Int($0)!}.map{$0 == 0})
+}
+
+struct Node {
+    let i: Int
+    let j: Int
+    let remainK: Int
+    let count: Int
+}
+
+let dx = [0,1,-1,0]
+let dy = [1,0,0,-1]
+
+let horseX = [-2, -2, 2,2,-1,-1,1,1]
+let horseY = [-1,1,-1,1,-2,2,-2,2]
+
+var visited: [[[Bool]]] = Array(repeating: Array(repeating: Array(repeating: false, count: wh[0]), count: wh[1]), count: k+1)
+var queue = Queue<Node>(arr: [.init(i: 0, j: 0, remainK: k, count: 0)])
+visited[k][0][0] = true
 
 func solution() {
-    var queue: [Monkey] = [.init(count: 0, canJumpCount: k, x: 0, y: 0)]
-    var idx = 0
-    while queue.count > idx {
-        let popM = queue[idx]
-        idx += 1
-        if popM.x == wh[0]-1 && popM.y == wh[1]-1 {
-            print(popM.count)
-            return
-        }
-        for i in 0..<mx.count {
-            let nextX = popM.x+mx[i]
-            let nextY = popM.y+my[i]
-            if validateCoordi(x: nextX, y: nextY, jumpCount: popM.canJumpCount) {
-                queue.append(.init(count: popM.count+1, canJumpCount: popM.canJumpCount, x: nextX, y: nextY))
-                visited[popM.canJumpCount][nextY][nextX] = true
+    if wh[0] == 1 && wh[1] == 1 {
+        print(0)
+        return
+    }
+
+    while !queue.isEmpty {
+        let pop = queue.pop()
+        
+        let remainK = pop.remainK
+        let count = pop.count
+        
+        for i in 0..<4 {
+            let nextI = pop.i + dy[i]
+            let nextJ = pop.j + dx[i]
+            
+            if nextI < 0 || nextI >= wh[1] || nextJ < 0 || nextJ >= wh[0] {
+                continue
             }
-        }
-        if popM.canJumpCount > 0 {
-            for i in 0..<hx.count {
-                let nextX = popM.x+hx[i]
-                let nextY = popM.y+hy[i]
-                if validateCoordi(x: nextX, y: nextY, jumpCount: popM.canJumpCount-1) {
-                    queue.append(.init(count: popM.count+1, canJumpCount: popM.canJumpCount-1, x: nextX, y: nextY))
-                    visited[popM.canJumpCount-1][nextY][nextX] = true
-                }
+            
+            if visited[remainK][nextI][nextJ] || !map[nextI][nextJ] {
+                continue
             }
+            
+            if nextI == wh[1] - 1 && nextJ == wh[0] - 1 {
+                print(count+1)
+                return
+            }
+            
+            visited[remainK][nextI][nextJ] = true
+            queue.append(.init(i: nextI, j: nextJ, remainK: remainK, count: count + 1))
         }
         
+        if remainK > 0 {
+            for i in 0..<8 {
+                let nextI = pop.i + horseY[i]
+                let nextJ = pop.j + horseX[i]
+                
+                if nextI < 0 || nextI >= wh[1] || nextJ < 0 || nextJ >= wh[0] {
+                    continue
+                }
+                
+                if visited[remainK-1][nextI][nextJ] || !map[nextI][nextJ] {
+                    continue
+                }
+                
+                if nextI == wh[1] - 1 && nextJ == wh[0] - 1 {
+                    print(count+1)
+                    return
+                }
+                
+                visited[remainK-1][nextI][nextJ] = true
+                queue.append(.init(i: nextI, j: nextJ, remainK: remainK-1, count: count + 1))
+            }
+        }
     }
-    print("-1")
+    print(-1)
 }
 
 solution()
