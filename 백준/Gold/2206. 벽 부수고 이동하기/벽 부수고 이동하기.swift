@@ -1,75 +1,98 @@
-//
-//  main.swift
-//  Algorithmn
-//
-//  Created by JunHwan Kim on 1/12/25.
-//
+import Foundation
 
 import Foundation
 
-struct Horse {
-    let canBreakWall: Bool
-    let x: Int
-    let y: Int
-    let count: Int
+struct Queue<T> {
+    private var startIdx = 0
+    private var lastIdx = -1
+    
+    private var arr: [T] = []
+    
+    init(arr: [T]) {
+        arr.forEach { append($0) }
+    }
+    
+    var isEmpty: Bool {
+        return startIdx > lastIdx
+    }
+    
+    mutating func append(_ input: T) {
+        arr.append(input)
+        lastIdx += 1
+    }
+    
+    mutating func pop() -> T {
+        let pop = arr[startIdx]
+        startIdx += 1
+        return pop
+    }
 }
 
-let nm = readLine()!.split(separator: " ").map { Int($0)! }
-let n = nm[0], m = nm[1]
+let nm = readLine()!.split(separator: " ").map{Int($0)!}
 var map: [[Bool]] = []
-var visited: [[[Bool]]] = Array(repeating: Array(repeating: Array(repeating: false, count: m), count: n), count: 2)
-let dx = [1,0,-1,0]
-let dy = [0,-1,0,1]
-
-for _ in 0..<n {
-    let input = Array(readLine()!).map { $0 == "0" ? true : false }
-    map.append(input)
+for _ in 0..<nm[0] {
+    map.append(Array(readLine()!).map{$0 == "0"})
 }
+
+struct Node {
+    let i: Int
+    let j: Int
+    let canCrash: Bool
+    let dist: Int
+}
+
+let dx = [0,1,-1,0]
+let dy = [1,0,0,-1]
+var visited: [[[Bool]]] = Array(repeating: Array(repeating: Array(repeating: false, count: nm[1]), count: nm[0]), count: 2)
+var queue = Queue<Node>(arr: [.init(i: 0, j: 0, canCrash: true, dist: 1)])
+visited[0][0][0] = true
+visited[1][0][0] = true
 
 func solution() {
-    var queue: [Horse] = [Horse(canBreakWall: true, x: 0, y: 0, count: 1)]
-    visited[0][0][0] = true
-    visited[1][0][0] = true
-    var idx = 0
-    while queue.count > idx {
-        let horse = queue[idx]
-        idx += 1
-        if horse.x == m-1 && horse.y == n-1 {
-            print(horse.count)
-            return
-        }
+    if nm[0] == 1 && nm[1] == 1 {
+        print(1)
+        return
+    }
+
+    while !queue.isEmpty {
+        let pop = queue.pop()
+        
         for i in 0..<4 {
-            let nextX = horse.x + dx[i]
-            let nextY = horse.y + dy[i]
-            if nextX < 0 || nextY < 0 || nextX >= m || nextY >= n || visited[horse.canBreakWall ? 0 : 1][nextY][nextX] {
+            let nextI = pop.i + dy[i]
+            let nextJ = pop.j + dx[i]
+            let canCrash = pop.canCrash
+            let dist = pop.dist
+            
+            if nextI < 0 || nextI >= nm[0] || nextJ < 0 || nextJ >= nm[1] {
                 continue
             }
-            //벽을 만난 경우
-            if !map[nextY][nextX] {
-                //벽 부술수 있는 경우 append
-                if horse.canBreakWall {
-                    queue.append(Horse(canBreakWall: false, x: nextX, y: nextY, count: horse.count+1))
-                    visited[0][nextY][nextX] = true
-                    if nextX == m-1 && nextY == n-1 {
-                        print(horse.count+1)
-                        return
-                    }
-                }
-            } else {
-                
-                if !visited[horse.canBreakWall ? 0 : 1][nextY][nextX] {
-                    queue.append(Horse(canBreakWall: horse.canBreakWall, x: nextX, y: nextY, count: horse.count+1))
-                    visited[horse.canBreakWall ? 0 : 1][nextY][nextX] = true
-                    if nextX == m-1 && nextY == n-1 {
-                        print(horse.count+1)
-                        return
-                    }
-                }
+            
+            if visited[canCrash ? 0 : 1][nextI][nextJ] {
+                continue
             }
             
+            if nextI == nm[0] - 1 && nextJ == nm[1] - 1 {
+                print(dist+1)
+                return
+            }
+            
+            // 방문한 곳이 벽인 경우
+            if !map[nextI][nextJ] {
+                // 벽 부술 수 있다면 큐에 추가 + 방문 처리
+                if canCrash {
+                    visited[0][nextI][nextJ] = true
+                    queue.append(.init(i: nextI, j: nextJ, canCrash: false, dist: dist + 1))
+                }
+                // 벽 부술 수 없다면 패스
+            } else {
+                // 방문한 곳이 벽이 아닌 경우
+                // 방문 처리 + 기존 pop 객체에 거리만 업데이트 해서 큐에 추가
+                visited[canCrash ? 0 : 1][nextI][nextJ] = true
+                queue.append(.init(i: nextI, j: nextJ, canCrash: canCrash, dist: dist + 1))
+            }
         }
     }
-    print("-1")
+    print(-1)
 }
 
 solution()
