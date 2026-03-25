@@ -92,7 +92,7 @@ for _ in 0..<m {
 let ab = readLine()!.split(separator: " ").map{Int($0)!}
 
 var dist: [Int] = Array(repeating: Int.max, count: n+1)
-var heap: Heap<(Int, Int)> = Heap(arr: [], comparable: { $0.1 > $1.1 })
+var heap: Heap<(Int, Int)> = Heap(arr: [], comparable: { $0.1 < $1.1 })
 
 func daikstra(start: Int) {
     for i in relation[start] {
